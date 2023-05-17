@@ -6,6 +6,7 @@ import styles from './string.module.css'
 import {ElementStates} from "../../types/element-states";
 import {Circle} from "../ui/circle/circle";
 import {sleep} from "../../utils/utils";
+import {DELAY_IN_MS} from "../../constants/delays";
 
 export const StringComponent: React.FC = () => {
   type TElement = { value: string, state: ElementStates };
@@ -32,14 +33,13 @@ export const StringComponent: React.FC = () => {
         arr[i].state = ElementStates.Changing;
         arr[j].state = ElementStates.Changing;
         setArray([...arr]);
-        await sleep(1000)
+        await sleep(DELAY_IN_MS)
       }
       [arr[i], arr[j]] = [arr[j], arr[i]];
       arr[i].state = ElementStates.Modified;
       arr[j].state = ElementStates.Modified;
       setArray([...arr]);
     }
-    console.log(arr);
     setLoader(false);
   }
   return (
