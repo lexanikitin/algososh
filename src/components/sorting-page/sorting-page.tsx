@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import styles from "./sorting.module.css";
 import {Button} from "../ui/button/button";
-import {Circle} from "../ui/circle/circle";
 import {RadioInput} from "../ui/radio-input/radio-input";
 import {Direction} from "../../types/direction";
 import {Column} from "../ui/column/column";
@@ -26,24 +25,82 @@ export const SortingPage: React.FC = () => {
     const minValue = 0;
     const maxValue = 100;
 
-    setArray(Array.from({length : Math.floor(Math.random()*(maxLen-minLen)+minLen)},
-      ()=>{return {value:Math.floor(Math.random()*(maxValue-minValue)+minValue), state: ElementStates.Default}}));
+    setArray(Array.from({length: Math.floor(Math.random() * (maxLen - minLen) + minLen)},
+      () => {
+        return {value: Math.floor(Math.random() * (maxValue - minValue) + minValue), state: ElementStates.Default}
+      }));
   }
-  const ascClickHandler = async () => {
-    setLoaderAsc(true);
+
+  const sortClickHandler = async (direction: string) => {
+    if (direction == 'asc') {
+      setLoaderAsc(true);
+    }
+    if (direction == 'desc') {
+      setLoaderDesc(true);
+    }
+    const arr = array;
     await sleep(SHORT_DELAY_IN_MS)
+    if (sortingMethod == 'selection') {
+      for (let i = 0; i < arr.length - 1; i++) {
+        let currentElem = i
+        for (let j = i + 1; j <= arr.length-1; j++) {
+          arr[i].state = ElementStates.Changing;
+          arr[j].state = ElementStates.Changing;
+          setArray([...arr]);
+          await sleep(SHORT_DELAY_IN_MS)
+          if(direction == 'asc'){
+            if (arr[currentElem].value > arr[j].value) {
+              currentElem = j;
+            }
+          } else {
+            if (arr[currentElem].value < arr[j].value) {
+              currentElem = j;
+            }
+          }
+          arr[j].state = ElementStates.Default;
+          arr[i].state = ElementStates.Default;
+          setArray([...arr]);
+        }
+        [arr[i], arr[currentElem]] = [arr[currentElem], arr[i]];
+        arr[i].state = ElementStates.Modified;
+        setArray([...arr]);
+      }
+      arr[arr.length - 1].state = ElementStates.Modified;
+
+    } else if (sortingMethod == 'bubble') {
+      for (let i = arr.length - 1; i >= 0; i--) {
+        for (let j = 0; j < i; j++) {
+          arr[j].state = ElementStates.Changing;
+          arr[j + 1].state = ElementStates.Changing;
+          setArray([...arr]);
+          await sleep(SHORT_DELAY_IN_MS);
+          if (direction == 'asc') {
+            if (arr[j].value > arr[j + 1].value) {
+              [arr[i], arr[j+1]] = [arr[j+1], arr[i]];
+            }
+          } else {
+            if (arr[j + 1].value < arr[j].value) {
+              [arr[i], arr[j+1]] = [arr[j+1], arr[i]];
+            }
+          }
+
+          arr[j+1].state = ElementStates.Modified;
+          arr[j].state = ElementStates.Default;
+        }
+        arr[i].state = ElementStates.Modified;
+      }
+
+    }
+
 
     setLoaderAsc(false);
-  }
-  const descClickHandler = async () => {
-    setLoaderDesc(true);
-    await sleep(SHORT_DELAY_IN_MS)
-
     setLoaderDesc(false);
   }
-  useEffect(()=>{
+
+
+  useEffect(() => {
     newArrayClickHandler();
-  },[])
+  }, [])
 
   return (
     <SolutionLayout title="Сортировка массива">
@@ -72,7 +129,7 @@ export const SortingPage: React.FC = () => {
               isLoader={isLoaderAsc}
               disabled={isLoaderDesc}
               onClick={
-                ascClickHandler
+                ()=>sortClickHandler('asc')
               }
               extraClass={styles.btn}
 
@@ -84,7 +141,7 @@ export const SortingPage: React.FC = () => {
               isLoader={isLoaderDesc}
               disabled={isLoaderAsc}
               onClick={
-                descClickHandler
+                ()=>sortClickHandler('desc')
               }
               extraClass={styles.btn}
             />
@@ -104,7 +161,7 @@ export const SortingPage: React.FC = () => {
             array.map((item, index) => {
               return (
                 <li key={index}>
-                  <Column index={item.value} state={item.state} />
+                  <Column index={item.value} state={item.state}/>
                 </li>
               )
             })
