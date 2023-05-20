@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import styles from "./stack-page.module.css";
 import {Input} from "../ui/input/input";
@@ -7,13 +7,17 @@ import {Circle} from "../ui/circle/circle";
 import {ElementStates} from "../../types/element-states";
 import {sleep} from "../../utils/utils";
 import {SHORT_DELAY_IN_MS} from "../../constants/delays";
+import {Stack} from "./Stack";
 
 export const StackPage: React.FC = () => {
   type TElement = { value: string, state: ElementStates };
 
   const [isPushLoader, setPushLoader] = useState<boolean>(false);
   const [isPopLoader, setPopLoader] = useState<boolean>(false);
+  const [isClearLoader, setClearLoader] = useState<boolean>(false);
   const [array, setArray] = useState<TElement[]>([]);
+  const [stack] = useState(new Stack<TElement>());
+  const [renderStack, setRenderStack] = useState<TElement[]>([]);
   const [input, setInput] = useState<string>('')
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,21 +25,32 @@ export const StackPage: React.FC = () => {
   }
   const pushHandler = async () => {
     setPushLoader(true);
-    setArray([...array, {value: input, state: ElementStates.Changing}]);
+    stack.push({value: input, state: ElementStates.Changing});
+    setRenderStack(stack.getStack);
     setInput('');
     await sleep(SHORT_DELAY_IN_MS);
-    setArray([...array, {value: input, state: ElementStates.Default}]);
+    let item = stack.peak();
+    if (item) item.state = ElementStates.Default
+    setRenderStack(stack.getStack);
     setPushLoader(false);
   }
   const popHandler = async () => {
+
     setPopLoader(true);
-    setArray(array.filter((item, index) => index !== array.length - 1));
+    let item = stack.peak();
+    if (item) item.state  = ElementStates.Changing
     await sleep(SHORT_DELAY_IN_MS);
+    stack.pop();
+    setRenderStack(stack.getStack);
     setPopLoader(false);
   }
-  const clearHandler = () => {
-    setArray([]);
+  const clearHandler = async () => {
+    setClearLoader(true);
+    stack.clearAll();
+    setRenderStack(stack.getStack);
+    await sleep(SHORT_DELAY_IN_MS);
     setInput('');
+    setClearLoader(false);
   }
 
 
@@ -63,7 +78,7 @@ export const StackPage: React.FC = () => {
             type={'button'}
             text={'Удалить'}
             isLoader={isPopLoader}
-            disabled={isPushLoader || array.length === 0}
+            disabled={isPushLoader || stack.getSize() === 0}
             onClick={
               popHandler
             }
@@ -71,7 +86,8 @@ export const StackPage: React.FC = () => {
           <Button
             type={'button'}
             text={'Очистить'}
-            disabled={isPopLoader || isPushLoader || array.length === 0}
+            isLoader={isClearLoader}
+            disabled={isPopLoader || isPushLoader || stack.getSize() === 0}
             onClick={
               clearHandler
             }
@@ -81,14 +97,14 @@ export const StackPage: React.FC = () => {
 
         <ul className={styles.resultContainer}>
           {
-            array.map((item, index) => {
+            renderStack.map((item, index) => {
               return (
                 <li key={index}>
                   <Circle
                     letter={item.value}
                     state={item.state}
                     index={index}
-                    head={index === array.length - 1 ? 'top' : ''}
+                    head={index === renderStack.length - 1 ? 'top' : ''}
                   />
                 </li>
               )
