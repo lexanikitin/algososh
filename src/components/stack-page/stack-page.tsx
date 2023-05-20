@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import styles from "./stack-page.module.css";
 import {Input} from "../ui/input/input";
@@ -15,10 +15,10 @@ export const StackPage: React.FC = () => {
   const [isPushLoader, setPushLoader] = useState<boolean>(false);
   const [isPopLoader, setPopLoader] = useState<boolean>(false);
   const [isClearLoader, setClearLoader] = useState<boolean>(false);
-  const [array, setArray] = useState<TElement[]>([]);
   const [stack] = useState(new Stack<TElement>());
   const [renderStack, setRenderStack] = useState<TElement[]>([]);
   const [input, setInput] = useState<string>('')
+
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -29,16 +29,14 @@ export const StackPage: React.FC = () => {
     setRenderStack(stack.getStack);
     setInput('');
     await sleep(SHORT_DELAY_IN_MS);
-    let item = stack.peak();
-    if (item) item.state = ElementStates.Default
+    stack.peak().state = ElementStates.Default
     setRenderStack(stack.getStack);
     setPushLoader(false);
   }
   const popHandler = async () => {
 
     setPopLoader(true);
-    let item = stack.peak();
-    if (item) item.state  = ElementStates.Changing
+    stack.peak().state  = ElementStates.Changing
     await sleep(SHORT_DELAY_IN_MS);
     stack.pop();
     setRenderStack(stack.getStack);
