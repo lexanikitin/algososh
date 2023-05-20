@@ -43,12 +43,12 @@ export const SortingPage: React.FC = () => {
     if (sortingMethod == 'selection') {
       for (let i = 0; i < arr.length - 1; i++) {
         let currentElem = i
-        for (let j = i + 1; j <= arr.length-1; j++) {
+        for (let j = i + 1; j <= arr.length - 1; j++) {
           arr[i].state = ElementStates.Changing;
           arr[j].state = ElementStates.Changing;
           setArray([...arr]);
           await sleep(SHORT_DELAY_IN_MS)
-          if(direction == 'asc'){
+          if (direction == 'asc') {
             if (arr[currentElem].value > arr[j].value) {
               currentElem = j;
             }
@@ -76,27 +76,22 @@ export const SortingPage: React.FC = () => {
           await sleep(SHORT_DELAY_IN_MS);
           if (direction == 'asc') {
             if (arr[j].value > arr[j + 1].value) {
-              [arr[i], arr[j+1]] = [arr[j+1], arr[i]];
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
             }
           } else {
-            if (arr[j + 1].value < arr[j].value) {
-              [arr[i], arr[j+1]] = [arr[j+1], arr[i]];
+            if (arr[j + 1].value > arr[j].value) {
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
             }
           }
-
-          arr[j+1].state = ElementStates.Modified;
+          arr[j + 1].state = ElementStates.Modified;
           arr[j].state = ElementStates.Default;
         }
         arr[i].state = ElementStates.Modified;
       }
-
     }
-
-
     setLoaderAsc(false);
     setLoaderDesc(false);
   }
-
 
   useEffect(() => {
     newArrayClickHandler();
@@ -129,7 +124,7 @@ export const SortingPage: React.FC = () => {
               isLoader={isLoaderAsc}
               disabled={isLoaderDesc}
               onClick={
-                ()=>sortClickHandler('asc')
+                () => sortClickHandler('asc')
               }
               extraClass={styles.btn}
 
@@ -141,7 +136,7 @@ export const SortingPage: React.FC = () => {
               isLoader={isLoaderDesc}
               disabled={isLoaderAsc}
               onClick={
-                ()=>sortClickHandler('desc')
+                () => sortClickHandler('desc')
               }
               extraClass={styles.btn}
             />
