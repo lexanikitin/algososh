@@ -4,7 +4,6 @@ import styles from "./fibonacci.module.css";
 import {Input} from "../ui/input/input";
 import {Button} from "../ui/button/button";
 import {Circle} from "../ui/circle/circle";
-import {ElementStates} from "../../types/element-states";
 import {sleep} from "../../utils/utils";
 import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 
@@ -53,6 +52,7 @@ export const FibonacciPage: React.FC = () => {
             max={19}
             isLimitText={true}
             onChange={onChangeHandler}
+            value={input}
           />
           <Button
             type={'submit'}

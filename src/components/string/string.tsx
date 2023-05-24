@@ -51,6 +51,7 @@ export const StringComponent: React.FC = () => {
             maxLength={11}
             isLimitText={true}
             onChange={onChangeHandler}
+            value={input}
           />
           <Button
             type={'submit'}
