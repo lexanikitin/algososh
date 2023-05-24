@@ -60,6 +60,7 @@ export const StringComponent: React.FC = () => {
             onClick={
               onButtonClickHandler
             }
+            disabled={input.length === 0}
           />
         </div>
         {isDisplay ?
