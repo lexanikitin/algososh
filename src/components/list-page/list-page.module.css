@@ -1,0 +1,47 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.taskContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 12px;
+  max-width: 980px;
+  width: 100%;
+}
+
+.controlRow {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.buttonWrapper {
+  width: 100%;
+  max-width: 736px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.resultContainer {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 16px;
+  padding: 120px 0 0 0;
+  margin: 0;
+  align-items: center;
+}
+.node{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}

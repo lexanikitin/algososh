@@ -1,0 +1,27 @@
+.wrapper{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.taskContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 12px;
+  max-width: 522px;
+  width: 100%;
+}
+
+.resultContainer {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 950px;
+  column-gap: 16px;
+  row-gap: 48px;
+  padding: 120px 0 0 0 ;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+}
