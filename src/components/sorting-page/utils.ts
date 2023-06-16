@@ -1,12 +1,14 @@
-import {TElementNum, TElementStr} from "../../types/elements";
+import {TElementNum} from "../../types/elements";
 import {Dispatch, SetStateAction} from "react";
 import {sleep} from "../../utils/utils";
 import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 import {ElementStates} from "../../types/element-states";
 
 export const bubbleSort = async (inputArray: TElementNum[], direction: string = 'asc', setArray: Dispatch<SetStateAction<TElementNum[]>>) => {
+  if(!inputArray.length) return [];
   const arr = inputArray;
   await sleep(SHORT_DELAY_IN_MS)
+
   for (let i = arr.length - 1; i >= 0; i--) {
     for (let j = 0; j < i; j++) {
       arr[j].state = ElementStates.Changing;
@@ -30,6 +32,7 @@ export const bubbleSort = async (inputArray: TElementNum[], direction: string = 
   return arr
 }
 export const selectionSort = async (inputArray: TElementNum[], direction: string = 'asc', setArray: Dispatch<SetStateAction<TElementNum[]>>) => {
+  if(!inputArray.length) return [];
   const arr = inputArray;
   await sleep(SHORT_DELAY_IN_MS)
   for (let i = 0; i < arr.length - 1; i++) {
