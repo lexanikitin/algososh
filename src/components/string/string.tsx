@@ -7,9 +7,11 @@ import {ElementStates} from "../../types/element-states";
 import {Circle} from "../ui/circle/circle";
 import {sleep} from "../../utils/utils";
 import {DELAY_IN_MS} from "../../constants/delays";
+import {TElement} from '../../types/elements'
+import {stringReverse} from "./utils";
 
 export const StringComponent: React.FC = () => {
-  type TElement = { value: string, state: ElementStates };
+
   const [isLoader, setLoader] = useState<boolean>(false);
   const [isDisplay, setDisplay] = useState<boolean>(false);
   const [array, setArray] = useState<TElement[]>([])
@@ -22,24 +24,8 @@ export const StringComponent: React.FC = () => {
     setDisplay(true)
     setLoader(true);
 
-    const arr = input.split('').map((item: string) => {
-      return {value: item, state: ElementStates.Default};
-    });
-    setArray(arr);
-    const middle = Math.ceil(arr.length / 2);
-    for (let i = 0; i < middle; i++) {
-      let j = arr.length - i - 1;
-      if (i !== j) {
-        arr[i].state = ElementStates.Changing;
-        arr[j].state = ElementStates.Changing;
-        setArray([...arr]);
-        await sleep(DELAY_IN_MS)
-      }
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-      arr[i].state = ElementStates.Modified;
-      arr[j].state = ElementStates.Modified;
-      setArray([...arr]);
-    }
+    await stringReverse(input, setArray);
+
     setLoader(false);
   }
   return (
