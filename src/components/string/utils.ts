@@ -1,10 +1,10 @@
 import {Dispatch, SetStateAction} from "react";
-import {TElement} from "../../types/elements";
+import {TElementStr} from "../../types/elements";
 import {ElementStates} from "../../types/element-states";
 import {sleep} from "../../utils/utils";
 import {DELAY_IN_MS} from "../../constants/delays";
 
-export const stringReverse = async (input: string, setArray: Dispatch<SetStateAction<TElement[]>>) => {
+export const stringReverse = async (input: string, setArray: Dispatch<SetStateAction<TElementStr[]>>) => {
 
   const arr = input.split('').map((item: string) => {
     return {value: item, state: ElementStates.Default};

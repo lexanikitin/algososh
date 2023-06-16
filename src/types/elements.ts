@@ -1,3 +1,4 @@
 import {ElementStates} from "./element-states";
 
-export type TElement = { value: string, state: ElementStates };
+export type TElementStr = { value: string, state: ElementStates };
+export type TElementNum = { value: number, state: ElementStates };

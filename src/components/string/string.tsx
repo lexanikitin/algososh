@@ -7,14 +7,14 @@ import {ElementStates} from "../../types/element-states";
 import {Circle} from "../ui/circle/circle";
 import {sleep} from "../../utils/utils";
 import {DELAY_IN_MS} from "../../constants/delays";
-import {TElement} from '../../types/elements'
+import {TElementStr} from '../../types/elements'
 import {stringReverse} from "./utils";
 
 export const StringComponent: React.FC = () => {
 
   const [isLoader, setLoader] = useState<boolean>(false);
   const [isDisplay, setDisplay] = useState<boolean>(false);
-  const [array, setArray] = useState<TElement[]>([])
+  const [array, setArray] = useState<TElementStr[]>([])
   const [input, setInput] = useState<string>('')
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplay(false)
