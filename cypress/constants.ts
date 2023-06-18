@@ -9,6 +9,9 @@ export const LIST_URL = '/list';
 
 export const SUBMIT_BTN = "button[type='submit']";
 export const CIRCLE = '[data-cy=circle]';
+export const PUSH_BTN = "button[data-cy='push']";
+export const POP_BTN = "button[data-cy='pop']";
+export const CLEAR_BTN = "button[data-cy='clear']";
 
 export const DEFAULT_STATE_STYLE = "4px solid rgb(0, 50, 255)";
 export const CHANGING_STATE_STYLE = "4px solid rgb(210, 82, 225)";
