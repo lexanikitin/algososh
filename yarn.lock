@@ -3583,6 +3583,11 @@ csstype@^3.0.2:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.0.11.tgz"
   integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
 
+cypress-cy-select@^0.2.3:
+  version "0.2.3"
+  resolved "http://npm.prakticum-team.ru/cypress-cy-select/-/cypress-cy-select-0.2.3.tgz"
+  integrity sha512-GGsPbigLQWhvhNRoLP6X8vwLGpEIFbKXK+uQbMljTr/LjcFJ8j8grJxEwEG/RTaC/usJXw2K8vh3fYdiDBsFqQ==
+
 cypress@^12.14.0:
   version "12.14.0"
   resolved "http://npm.prakticum-team.ru/cypress/-/cypress-12.14.0.tgz"
