@@ -1,6 +1,5 @@
 import {
   DEFAULT_STATE_STYLE,
-  MAIN_PAGE_URL,
   CIRCLE,
   CHANGING_STATE_STYLE,
   CIRCLE_HEAD,
@@ -19,7 +18,7 @@ const testCase = 'test'
 
 describe('Алгоритм работы кнопок на странице "Связный список"', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + LIST_URL);
+    cy.visit(LIST_URL);
   });
   it('кнопки не доступны при открытии страницы (input пустые) ', () => {
     cy.get(APPEND_BTN).should("be.disabled");
@@ -51,7 +50,7 @@ describe('Алгоритм работы кнопок на странице "Св
 });
 describe('Визуализация алгоритма Связного списка', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + LIST_URL);
+    cy.visit(LIST_URL);
   });
   it('генерация списка из нескольких элементов, в котором есть head, tail, значения', () => {
     cy.clock();

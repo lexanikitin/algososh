@@ -1,7 +1,6 @@
 import {
   CHANGING_STATE_STYLE,
   DEFAULT_STATE_STYLE,
-  MAIN_PAGE_URL,
   MODIFIED_STATE_STYLE,
   STRING_URL,
   SUBMIT_BTN,
@@ -12,7 +11,7 @@ import {DELAY_IN_MS} from "../../src/constants/delays";
 const testCase = 'test'
 describe('Алгоритм работы кнопки на странице Строка', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + STRING_URL);
+    cy.visit(STRING_URL);
   });
   it('кнопка не доступна при открытии страницы (input пустой) ', () => {
     cy.get(SUBMIT_BTN).should("be.disabled");
@@ -29,7 +28,7 @@ describe('Алгоритм работы кнопки на странице Ст�
 });
 describe('Визуализация алгоритма разворота строки', () => {
   before(() => {
-    cy.visit(MAIN_PAGE_URL + STRING_URL);
+    cy.visit(STRING_URL);
   });
   it('тест и алгоритма разворота и стилей ', () => {
     cy.clock();

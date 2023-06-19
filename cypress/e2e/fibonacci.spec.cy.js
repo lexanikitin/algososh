@@ -1,6 +1,5 @@
 import {
   DEFAULT_STATE_STYLE,
-  MAIN_PAGE_URL,
   SUBMIT_BTN,
   CIRCLE, FIBONACCI_URL
 } from "../constants";
@@ -10,7 +9,7 @@ const testCase = {number: 8, result: [0, 1, 1, 2, 3, 5, 8, 13]}
 
 describe('Алгоритм работы кнопки на странице "Последовательность Фибоначчи"', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + FIBONACCI_URL);
+    cy.visit(FIBONACCI_URL);
   });
   it('кнопка не доступна при открытии страницы (input пустой) ', () => {
     cy.get(SUBMIT_BTN).should("be.disabled");
@@ -28,7 +27,7 @@ describe('Алгоритм работы кнопки на странице "По
 
 describe('Визуализация алгоритма расчета последовательности', () => {
   before(() => {
-    cy.visit(MAIN_PAGE_URL + FIBONACCI_URL);
+    cy.visit(FIBONACCI_URL);
   });
   it('тест алгоритма и стилей', () => {
     cy.clock();

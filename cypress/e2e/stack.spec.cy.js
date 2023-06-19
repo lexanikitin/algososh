@@ -1,6 +1,5 @@
 import {
   DEFAULT_STATE_STYLE,
-  MAIN_PAGE_URL,
   CIRCLE, STACK_URL, POP_BTN, CLEAR_BTN, PUSH_BTN, CHANGING_STATE_STYLE
 } from "../constants";
 import {SHORT_DELAY_IN_MS} from "../../src/constants/delays";
@@ -9,7 +8,7 @@ const testCase = 'test'
 
 describe('Алгоритм работы кнопок на странице "Стек"', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + STACK_URL);
+    cy.visit(STACK_URL);
   });
   it('кнопки не доступна при открытии страницы (input пустой) ', () => {
     cy.get(PUSH_BTN).should("be.disabled");
@@ -71,7 +70,7 @@ describe('Алгоритм работы кнопок на странице "Ст
 });
 describe('Визуализация алгоритма стека', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + STACK_URL);
+    cy.visit(STACK_URL);
   });
   it('добавляем элементы', () => {
     cy.clock();

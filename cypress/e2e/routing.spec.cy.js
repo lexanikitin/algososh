@@ -1,8 +1,8 @@
-import {FIBONACCI_URL, LIST_URL, MAIN_PAGE_URL, QUEUE_URL, SORTING_URL, STACK_URL, STRING_URL} from "../constants";
+import {FIBONACCI_URL, LIST_URL, QUEUE_URL, SORTING_URL, STACK_URL, STRING_URL} from "../constants";
 
 describe('Роутинг по страницам : ', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL);
+    cy.visit('');
   });
   it('главная', () => {
     cy.contains(/МБОУ АЛГОСОШ/i);

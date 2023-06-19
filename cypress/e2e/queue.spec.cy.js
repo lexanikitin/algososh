@@ -1,6 +1,5 @@
 import {
   DEFAULT_STATE_STYLE,
-  MAIN_PAGE_URL,
   CIRCLE,
   CLEAR_BTN,
   CHANGING_STATE_STYLE,
@@ -15,7 +14,7 @@ const testCase = 'test'
 
 describe('Алгоритм работы кнопок на странице "Очередь"', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + QUEUE_URL);
+    cy.visit(QUEUE_URL);
   });
   it('кнопки не доступна при открытии страницы (input пустой) ', () => {
     cy.get(ENQUEUE_BTN).should("be.disabled");
@@ -43,7 +42,7 @@ describe('Алгоритм работы кнопок на странице "Оч
 });
 describe('Визуализация алгоритма очереди', () => {
   beforeEach(() => {
-    cy.visit(MAIN_PAGE_URL + QUEUE_URL);
+    cy.visit(QUEUE_URL);
   });
   it('добавляем элементы', () => {
     cy.clock();
