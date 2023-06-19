@@ -2,10 +2,7 @@ import {
   DEFAULT_STATE_STYLE,
   MAIN_PAGE_URL,
   CIRCLE,
-  STACK_URL,
-  POP_BTN,
   CLEAR_BTN,
-  PUSH_BTN,
   CHANGING_STATE_STYLE,
   QUEUE_URL,
   ENQUEUE_BTN,
@@ -80,19 +77,19 @@ describe('Визуализация алгоритма очереди', () => {
     }
     cy.tick(SHORT_DELAY_IN_MS);
 
-    for(let i = 0; i < testCase.length; i++){
+    for (let i = 0; i < testCase.length; i++) {
       cy.get(CIRCLE_HEAD)
         .eq(i)
         .contains('head');
       cy.get(DEQUEUE_BTN).click();
-      for (let j = i ; j <= testCase.length-i-1; j++) {
+      for (let j = i; j <= testCase.length - i - 1; j++) {
         cy.get(CIRCLE)
           .eq(j)
           .should("have.css", "border", j === i ? CHANGING_STATE_STYLE : DEFAULT_STATE_STYLE)
           .contains(testCase[j])
       }
       cy.get(CIRCLE_TAIL)
-        .eq(testCase.length-1)
+        .eq(testCase.length - 1)
         .contains('tail');
       cy.tick(SHORT_DELAY_IN_MS);
     }

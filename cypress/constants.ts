@@ -18,6 +18,23 @@ export const POP_BTN = "button[data-cy='pop']";
 export const CLEAR_BTN = "button[data-cy='clear']";
 export const ENQUEUE_BTN = "button[data-cy='enqueue']";
 export const DEQUEUE_BTN = "button[data-cy='dequeue']";
+export const LIST_VALUE_INPUT = "input[data-cy='list-value-input']";
+
+export const PREPEND_BTN = "button[data-cy='prepend-btn']";
+
+export const APPEND_BTN = "button[data-cy='append-btn']";
+
+export const CUT_HEAD_BTN = "button[data-cy='cut-head-btn']";
+
+export const CUT_TAIL_BTN = "button[data-cy='cut-tail-btn']";
+
+export const LIST_INDEX_INPUT = "input[data-cy='list-index-input']";
+
+export const ADD_ON_INDEX_BTN = "button[data-cy='add-on-index-btn']";
+
+export const POP_ON_INDEX_BTN = "button[data-cy='pop-on-index-btn']";
+
+
 
 export const DEFAULT_STATE_STYLE = "4px solid rgb(0, 50, 255)";
 export const CHANGING_STATE_STYLE = "4px solid rgb(210, 82, 225)";
