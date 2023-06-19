@@ -56,6 +56,7 @@ export const QueuePage: React.FC = () => {
             value={input}
           />
           <Button
+            data-cy={'enqueue'}
             type={'button'}
             text={'Добавить'}
             isLoader={isEnqueueLoader}
@@ -65,6 +66,7 @@ export const QueuePage: React.FC = () => {
             }
           />
           <Button
+            data-cy={'dequeue'}
             type={'button'}
             text={'Удалить'}
             isLoader={isDequeueLoader}
@@ -74,6 +76,7 @@ export const QueuePage: React.FC = () => {
             }
           />
           <Button
+            data-cy={'clear'}
             type={'button'}
             text={'Очистить'}
             isLoader={isClearLoader}
