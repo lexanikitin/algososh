@@ -179,6 +179,7 @@ export const ListPage: React.FC = () => {
         <div className={styles.taskContainer}>
           <div className={styles.controlRow}>
             <Input
+              data-cy={'list-value-input'}
               type={'text'}
               maxLength={4}
               isLimitText={true}
@@ -188,6 +189,7 @@ export const ListPage: React.FC = () => {
             />
             <div className={styles.buttonWrapper}>
               <Button
+                data-cy={'prepend-btn'}
                 type={'button'}
                 text={'Добавить в head'}
                 linkedList={'big'}
@@ -202,6 +204,7 @@ export const ListPage: React.FC = () => {
                 isLoader={isAddHeadLoader}
               />
               <Button
+                data-cy={'append-btn'}
                 type={'button'}
                 text={'Добавить в tail'}
                 linkedList={'big'}
@@ -216,6 +219,7 @@ export const ListPage: React.FC = () => {
                 isLoader={isAddTailLoader}
               />
               <Button
+                data-cy={'cut-head-btn'}
                 type={'button'}
                 text={'Удалить из head'}
                 linkedList={'big'}
@@ -230,6 +234,7 @@ export const ListPage: React.FC = () => {
                 isLoader={isCutHeadLoader}
               />
               <Button
+                data-cy={'cut-tail-btn'}
                 type={'button'}
                 text={'Удалить из tail'}
                 linkedList={'big'}
@@ -248,6 +253,7 @@ export const ListPage: React.FC = () => {
           </div>
           <div className={styles.controlRow}>
             <Input
+              data-cy={'list-index-input'}
               type={'number'}
               max={list.getLength() - 1}
               isLimitText={true}
@@ -257,6 +263,7 @@ export const ListPage: React.FC = () => {
             />
             <div className={styles.buttonWrapper}>
               <Button
+                data-cy={'add-on-index-btn'}
                 type={'button'}
                 text={'Добавить по индексу'}
                 linkedList={'big'}
@@ -275,6 +282,7 @@ export const ListPage: React.FC = () => {
                 isLoader={isAddIndexLoader}
               />
               <Button
+                data-cy={'pop-on-index-btn'}
                 type={'button'}
                 text={'Удалить по индексу'}
                 linkedList={'big'}

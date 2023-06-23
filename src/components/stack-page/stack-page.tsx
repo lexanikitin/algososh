@@ -64,6 +64,7 @@ export const StackPage: React.FC = () => {
             value={input}
           />
           <Button
+            data-cy={'push'}
             type={'button'}
             text={'Добавить'}
             isLoader={isPushLoader}
@@ -73,6 +74,7 @@ export const StackPage: React.FC = () => {
             }
           />
           <Button
+            data-cy={'pop'}
             type={'button'}
             text={'Удалить'}
             isLoader={isPopLoader}
@@ -82,6 +84,7 @@ export const StackPage: React.FC = () => {
             }
           />
           <Button
+            data-cy={'clear'}
             type={'button'}
             text={'Очистить'}
             isLoader={isClearLoader}
